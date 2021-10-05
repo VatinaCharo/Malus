@@ -22,6 +22,68 @@
 **演示**
 ![demo](https://raw.githubusercontent.com/VatinaCharo/PicgoPicAssets/main/pic/malus_demo.png)
 
+**配置文件示例**
+```yaml
+# ===============
+# 全局配置属性
+# ===============
+# 默认的指令前缀
+commandPrefix: !!
+# 默认的图片API，可依据需求自行更改，但务必保证返回的结果是一张图片，最好是jpg，其他不做可用性保证
+imageAPI: 'https://imgapi.cn/cos.php?return=img'
+# 下载的图片储存位置
+imageStorage: './data/image/Malus/'
+#  默认的图片API，暂不支持兼容其他站点的一言接口，可用此站的参数进行装饰
+hitokotoAPI: 'https://v1.hitokoto.cn'
+# ===============
+# 指令具体配置属性
+# ===============
+# ping指令的群白名单
+ping: 
+  - 123456789
+  - 987654321
+# gkd指令的群白名单
+gkd: 
+  - 123456789
+  - 987654321
+# gkd指令的冷却时间，单位ms
+gkdCD: 5000
+# 一言指令的群白名单
+yy: 
+  - 123456789
+  - 987654321
+# 天气指令的群白名单
+tq: 
+  - 123456789
+  - 987654321
+```
+
+## 项目结构
+```text
+Main Class : VatinaCharo.Malus
+
+main/
+├── java/
+│   └── VatinaCharo/
+│       ├── Commands/
+│       │   ├── Command.java
+│       │   ├── CommandsManager.java
+│       │   ├── GetRandImage.java
+│       │   ├── Help.java
+│       │   ├── Hitokoto.java
+│       │   ├── Ping.java
+│       │   └── SimpleCommand.java
+│       ├── Malus.java
+│       └── Utils/
+│           ├── Config.kt
+│           ├── HitokotoHelper.java
+│           ├── ImgDownloader.java
+│           └── Resources.java
+└── resources/
+    └── META-INF/
+        └── services/
+            └── net.mamoe.mirai.console.plugin.jvm.JvmPlugin
+```
 ## LICENSE
 
 ```
