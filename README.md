@@ -73,18 +73,21 @@ main/
 │       │   ├── Help.java
 │       │   ├── Hitokoto.java
 │       │   ├── Ping.java
-│       │   └── SimpleCommand.java
+│       │   ├── SimpleCommand.java
+│       │   └── Upgrade.java
 │       ├── Malus.java
 │       └── Utils/
 │           ├── Config.kt
 │           ├── HitokotoHelper.java
 │           ├── ImgDownloader.java
-│           └── Resources.java
+│           ├── Resources.java
+│           └── UpgradeHelper.java
 └── resources/
     └── META-INF/
         └── services/
             └── net.mamoe.mirai.console.plugin.jvm.JvmPlugin
 ```
+
 ## LICENSE
 
 ```
