@@ -10,6 +10,7 @@ public class CommandsManager {
     public final String commandPrefix;
     private final MiraiLogger logger;
     private final Help help = new Help(this);
+    private final Upgrade upgrade = new Upgrade();
     public static final ArrayList<Command> COMMANDS = new ArrayList<>();
     public static final ArrayList<SimpleCommand> SIMPLE_COMMANDS = new ArrayList<>();
 
@@ -17,6 +18,7 @@ public class CommandsManager {
         this.commandPrefix = commandPrefix;
         this.logger = logger;
         COMMANDS.add(help);
+        COMMANDS.add(upgrade);
     }
 
     public void registerCommand(SimpleCommand sc) {
@@ -35,10 +37,13 @@ public class CommandsManager {
         String[] rawText = event.getMessage().contentToString().split(" ");
         if (rawText[0].startsWith(commandPrefix)) {
             String name = rawText[0].substring(2);
-            //分派解析后的指令到对应的command处理
+            // 优先解析内建的全局指令
             if (name.equals(help.getName())) {
                 help.onCommand(event);
+            } else if (name.equals(upgrade.getName())) {
+                upgrade.onCommand(event);
             } else {
+                //分派解析后的指令到对应的command处理
                 SIMPLE_COMMANDS.stream()
                         .filter(sc -> name.equals(sc.getName()))
                         .forEach(sc -> sc.onCommand(event));
