@@ -1,5 +1,5 @@
 # Malus
-小棠(Malus)，一个基于[mirai]()和[mirai-console]()的机器人。
+小棠(Malus)，一个基于[mirai](https://github.com/mamoe/mirai)和[mirai-console](https://github.com/mamoe/mirai-console)的机器人。
 ## LICENSE
 > Malus, a mirai bot based on mirai and mirai-console.
 > Copyright (C) 2021  Vatina Charo
