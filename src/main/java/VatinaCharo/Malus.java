@@ -37,7 +37,7 @@ public final class Malus extends JavaPlugin {
             getLogger().info(Resources.NAME_CN + "：注册指令中...");
             getLogger().info(Resources.NAME + ": registering commands...");
             //注册自建指令
-            // TODO: 2021/10/5 yy(一言) tq(天气)
+            // TODO: 2021/10/6 tq(天气)
             commandsManager.registerCommand(new Ping());
             commandsManager.registerCommand(new GetRandImage());
             commandsManager.registerCommand(new Hitokoto());

@@ -20,7 +20,7 @@ public class Help implements Command {
 
     @Override
     public String info() {
-        return getName()+" -> "+ Resources.NAME_CN +"会@你并回复帮助信息";
+        return getName() + " -> " + Resources.NAME_CN + "会@你并回复帮助信息";
     }
 
     @Override

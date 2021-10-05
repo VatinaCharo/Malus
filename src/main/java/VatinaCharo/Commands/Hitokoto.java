@@ -7,7 +7,6 @@ import net.mamoe.mirai.event.events.GroupMessageEvent;
 import net.mamoe.mirai.message.data.At;
 import net.mamoe.mirai.message.data.MessageChainBuilder;
 import net.mamoe.mirai.message.data.QuoteReply;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
