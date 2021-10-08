@@ -12,21 +12,9 @@ public class HitokotoHelper {
     }
 
     public static class POJO {
-        public int id;
-        public String uuid;
         public String hitokoto;
-        public String type;
         public String from;
         @SerializedName("from_who")
         public String fromWho;
-        public String creator;
-        @SerializedName("creator_uid")
-        public String creatorUID;
-        public int reviewer;
-        @SerializedName("commit_from")
-        public String commitFrom;
-        @SerializedName("created_at")
-        public String createdAT;
-        public int length;
     }
 }

@@ -42,9 +42,7 @@ public final class Malus extends JavaPlugin {
             commandsManager.registerCommand(new GetRandImage());
             commandsManager.registerCommand(new Hitokoto());
             //注入群事件到自建的指令系统之中
-            GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, event -> {
-                commandsManager.handle(event);
-            });
+            GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, commandsManager::handle);
 
             getLogger().info(Resources.NAME_CN + "：加载成功");
             getLogger().info(Resources.NAME + ": Succeed to Load");
