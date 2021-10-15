@@ -10,7 +10,6 @@ import net.mamoe.mirai.message.data.MessageChainBuilder;
 import net.mamoe.mirai.message.data.QuoteReply;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -29,16 +28,19 @@ public class GetRandImage extends SimpleCommand {
     @Override
     void handle(GroupMessageEvent event) {
         long newTime = System.currentTimeMillis();
+        // 判断是否进入了发图cd
         if (newTime - time > Config.INSTANCE.getGkdCD()) {
+            // 更新发图时间
             time = newTime;
             // 开辟额外的线程去下载图片
             CompletableFuture<String> getImage = CompletableFuture.supplyAsync(() -> {
                 try {
                     return ImgDownloader.download(Config.INSTANCE.getImageAPI(), Config.INSTANCE.getImageStorage());
-                } catch (IOException e) {
+                } catch (Exception e) {
                     return "err";
                 }
             });
+            // 构建发送的消息的抬头
             MessageChainBuilder mcb = new MessageChainBuilder()
                     .append(new QuoteReply(event.getSource()))
                     .append(new At(event.getSender().getId()));

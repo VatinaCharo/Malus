@@ -1,9 +1,9 @@
 package VatinaCharo.Utils;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 
 public class ImgDownloader {
     /**
@@ -11,11 +11,16 @@ public class ImgDownloader {
      * @param imagePath 图片存放地址
      * @param id        task id
      * @return file name
-     * @throws IOException 下载错误或文件读写错误
+     * @throws Exception 下载错误或文件读写错误
      */
-    public static String download(URL url, String imagePath, int id) throws IOException {
+    public static String download(URL url, String imagePath, int id) throws Exception {
         String fileName = System.currentTimeMillis() + "_" + id + ".jpg";
-        InputStream in = url.openConnection().getInputStream();
+        //建立网络链接
+        URLConnection uc =  url.openConnection();
+        //设置超时时限为30s
+        uc.setConnectTimeout(30_000);
+        //获取网络输入流
+        InputStream in = uc.getInputStream();
         FileOutputStream out = new FileOutputStream(imagePath + fileName);
         for (int imgByte; (imgByte = in.read()) != -1; ) {
             out.write(imgByte);
@@ -25,7 +30,7 @@ public class ImgDownloader {
         return fileName;
     }
 
-    public static String download(String url, String imagePath) throws IOException {
+    public static String download(String url, String imagePath) throws Exception {
         return download(new URL(url), imagePath, 0);
     }
 }
