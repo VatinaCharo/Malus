@@ -14,5 +14,4 @@ object Config : AutoSavePluginConfig("${Resources.NAME}Config") {
     var gkd: List<Long> by value(arrayListOf(123456789, 987654321))
     var gkdCD: Int by value(5000)
     var yy: List<Long> by value(arrayListOf(123456789, 987654321))
-    var tq: List<Long> by value(arrayListOf(123456789, 987654321))
 }
