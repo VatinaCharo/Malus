@@ -3,15 +3,19 @@ package VatinaCharo;
 import VatinaCharo.Commands.*;
 import VatinaCharo.Utils.Config;
 import VatinaCharo.Utils.Resources;
+import net.mamoe.mirai.Bot;
+import net.mamoe.mirai.BotFactory;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
 import net.mamoe.mirai.event.GlobalEventChannel;
+import net.mamoe.mirai.event.events.BotOnlineEvent;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
 
 import java.io.File;
 
 public final class Malus extends JavaPlugin {
     public static final Malus INSTANCE = new Malus();
+    public Bot MalusBot;
     public CommandsManager commandsManager;
 
     private Malus() {
@@ -32,17 +36,19 @@ public final class Malus extends JavaPlugin {
         initImageStorage();
 
         if (Resources.isInitImageStorage) {
-            //创建自建指令管理系统
+            // 创建自建指令管理系统
             commandsManager = new CommandsManager(Config.INSTANCE.getCommandPrefix(), getLogger());
             getLogger().info(Resources.NAME_CN + "：注册指令中...");
             getLogger().info(Resources.NAME + ": registering commands...");
-            //注册自建指令
+            // 注册自建指令
             // TODO: 2021/10/6 tq(天气)
             commandsManager.registerCommand(new Ping());
             commandsManager.registerCommand(new GetRandImage());
             commandsManager.registerCommand(new Hitokoto());
-            //注入群事件到自建的指令系统之中
+            // 注入群事件到自建的指令系统之中
             GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, commandsManager::handle);
+            // 获取到机器人自身的实例
+            GlobalEventChannel.INSTANCE.subscribeAlways(BotOnlineEvent.class, event -> MalusBot = event.getBot());
 
             getLogger().info(Resources.NAME_CN + "：加载成功");
             getLogger().info(Resources.NAME + ": Succeed to Load");
