@@ -36,7 +36,7 @@ public class CommandsManager {
     public void handle(GroupMessageEvent event) {
         String[] rawText = event.getMessage().contentToString().split(" ");
         if (rawText[0].startsWith(commandPrefix)) {
-            String name = rawText[0].substring(2);
+            String name = rawText[0].substring(commandPrefix.length());
             // 优先解析内建的全局指令
             if (name.equals(help.getName())) {
                 help.onCommand(event);
